@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title></title>
+		<style>
+			.item {
+				padding-top: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="data">
+			<div>v-html 解析数据中带有的html元素</div>
+			<div>{{htmlData}}</div>
+			<div v-html="htmlData"></div>
+
+			<div class="item">v-once 数据只渲染一次</div>
+			<div v-once>{{onceData}}</div>
+			<button @click="oncechange">修改v-once的值</button>
+
+			<div class="item">v-if不保留元素的位置</div>
+			<div v-if="ifdata">v-if显示内容</div>
+			<button @click="ifchange">开关</button>
+
+			<div class="item">v-show保留元素</div>
+			<div v-show="showdata">v-show显示内容</div>
+			<button @click="showchange">开关</button>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: "#data",
+				data: {
+					htmlData: '<span>abc</span>',
+					onceData: '一次',
+					ifdata: true,
+					showdata: true,
+				},
+
+				methods: {
+					oncechange:function(){
+						this.onceData = 'aa';
+					},
+					ifchange: function() {
+						if (this.ifdata) {
+							this.ifdata = false
+						} else {
+							this.ifdata = true
+						};
+					},
+					showchange: function() {
+						if (this.showdata) {
+							this.showdata = false
+						} else {
+							this.showdata = true
+						};
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
